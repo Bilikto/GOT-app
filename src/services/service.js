@@ -25,6 +25,20 @@ export default class GotService {
     return data;
   }
 
+  getAllBooks = async () => {
+    const data = await this.gotResourse(`/books?page=10&pageSize=10`);
+    return data;
+  }
+
+  getBook = async (id) => {
+    const data = await this.gotResourse(`/books/${id}`);
+    return data;
+  }
+
+
+
+
+
 
 
 
