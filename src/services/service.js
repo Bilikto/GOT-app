@@ -35,6 +35,16 @@ export default class GotService {
     return data;
   }
 
+  getAllHouses = async () => {
+    const data = await this.gotResourse(`/houses?page=10&pageSize=10`);
+    return data;
+  }
+
+  getHouse = async (id) => {
+    const data = await this.gotResourse(`/houses/${id}`);
+    return data;
+  }
+
 
 
 
