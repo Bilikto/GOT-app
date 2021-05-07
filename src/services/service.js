@@ -14,4 +14,18 @@ export default class GotService {
 
     return await response.json();
   }
+
+  getAllCharacters = async () => {
+    const data = await this.gotResourse(`/characters?page=10&pageSize=10`);
+    return data;
+  }
+
+  getCharacter = async (id) => {
+    const data = await this.gotResourse(`/characters/${id}`);
+    return data;
+  }
+
+
+
+
 }
