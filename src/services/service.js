@@ -17,41 +17,64 @@ export default class GotService {
 
   getAllCharacters = async () => {
     const data = await this.getResourse(`/characters?page=10&pageSize=10`);
-    return data;
+    return data.map(this._transformCharacter);
   }
 
   getCharacter = async (id) => {
     const data = await this.getResourse(`/characters/${id}`);
-    return data;
+    return this._transformCharacter(data);
   }
 
   getAllBooks = async () => {
     const data = await this.getResourse(`/books?page=10&pageSize=10`);
-    return data;
+    return data.map(this._transformBook);
   }
 
   getBook = async (id) => {
     const data = await this.getResourse(`/books/${id}`);
-    return data;
+    return this._transformBook(data);
   }
 
   getAllHouses = async () => {
     const data = await this.getResourse(`/houses?page=10&pageSize=10`);
-    return data;
+    return data.map(this._transformHouse);
   }
 
   getHouse = async (id) => {
     const data = await this.getResourse(`/houses/${id}`);
-    return data;
+    return this._transformHouse(data);
   }
 
+  _transformCharacter = (char) => {
+    return {
+      id: char.url,
+      name: char.name,
+      gender: char.gender,
+      born: char.born,
+      died: char.died,
+      culture: char.culture
+    }
+  }
 
+  _transformBook = (book) => {
+    return {
+      id: book.url, 
+      name: book.name,
+      numberOfPages: book.numberOfPages,
+      publiser: book.publiser,
+      released: book.released
+    }
+  }
 
-
-
-
-
-
-
-
+  _transformHouse = (house) => {
+    return {
+      id: house, 
+      name: house.name,
+      region: house.region,
+      words: house.words,
+      titles: house.titles,
+      overlord: house.overlord,
+      ancestralWeapons: house.ancestralWeapons
+    }
+  }
 }
