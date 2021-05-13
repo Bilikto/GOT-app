@@ -48,38 +48,46 @@ export default class GotService {
   _transformCharacter = (char) => {
     return {
       id: this._extractId(char),
-      name: char.name,
-      gender: char.gender,
-      born: char.born,
-      died: char.died,
-      culture: char.culture
+      name: this._isSet(char.name),
+      gender: this._isSet(char.gender),
+      born: this._isSet(char.born),
+      died: this._isSet(char.died),
+      culture: this._isSet(char.culture)
     }
   }
 
   _transformBook = (book) => {
     return {
       id: this._extractId(book), 
-      name: book.name,
-      numberOfPages: book.numberOfPages,
-      publiser: book.publiser,
-      released: book.released
+      name: this._isSet(book.name),
+      numberOfPages: this._isSet(book.numberOfPages),
+      publiser: this.__isSet(book.publiser),
+      released: this.__isSet(book.released)
     }
   }
 
   _transformHouse = (house) => {
     return {
       id: this._extractId(house), 
-      name: house.name,
-      region: house.region,
-      words: house.words,
-      titles: house.titles,
-      overlord: house.overlord,
-      ancestralWeapons: house.ancestralWeapons
+      name: this._isSet(house.name),
+      region: this._isSet(house.region),
+      words: this._isSet(house.words),
+      titles: this._isSet(house.titles),
+      overlord: this._isSet(house.overlord),
+      ancestralWeapons: this._isSet(house.ancestralWeapons)
     }
   }
 
   _extractId = (arr) => {
     const regexp = /\/(\d*)$/;
     arr.match(regexp)[1];
+  }
+
+  _isSet = (data) => {
+    if (data) {
+      return data;
+    } else {
+      return 'No data..';
+    }
   }
 }
