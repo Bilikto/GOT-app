@@ -47,7 +47,7 @@ export default class GotService {
 
   _transformCharacter = (char) => {
     return {
-      id: char.url,
+      id: this._extractId(char),
       name: char.name,
       gender: char.gender,
       born: char.born,
@@ -58,7 +58,7 @@ export default class GotService {
 
   _transformBook = (book) => {
     return {
-      id: book.url, 
+      id: this._extractId(book), 
       name: book.name,
       numberOfPages: book.numberOfPages,
       publiser: book.publiser,
@@ -68,7 +68,7 @@ export default class GotService {
 
   _transformHouse = (house) => {
     return {
-      id: house, 
+      id: this._extractId(house), 
       name: house.name,
       region: house.region,
       words: house.words,
@@ -76,5 +76,10 @@ export default class GotService {
       overlord: house.overlord,
       ancestralWeapons: house.ancestralWeapons
     }
+  }
+
+  _extractId = (arr) => {
+    const regexp = /\/(\d*)$/;
+    arr.match(regexp)[1];
   }
 }
